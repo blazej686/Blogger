@@ -12,6 +12,14 @@ class BlogsService {
         AppState.blogs = res.data.map((pojo) => new Blog(pojo))
 
     }
+
+    async getBlogById(blogId) {
+        AppState.activeBlog = null
+        const res = await api.get(`api/blogs/${blogId}`)
+        AppState.activeBlog = new Blog(res.data)
+
+
+    }
 }
 
 export const blogsService = new BlogsService()

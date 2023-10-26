@@ -1,11 +1,14 @@
 <template>
     <section class="row">
-        <div class="col-8 border">
-            <p>{{ blogProp.body }}</p>
-        </div>
+        <RouterLink :to="{ name: 'activeBlog', params: { blogId: blogProp.id } }">
+            <div class="col-8 border">
+                <p>{{ blogProp.body.toString(5) }}</p>
+            </div>
+        </RouterLink>
         <div class="col-4">
             <img :src="blogProp.imgUrl" :alt="blogProp.title">
         </div>
+
     </section>
 </template>
 
@@ -14,13 +17,13 @@
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import { Blog } from '../models/Blog.js';
+import { RouterLink } from 'vue-router';
 export default {
     props: { blogProp: { type: Blog, required: true } },
-
-
     setup(props) {
-        return {}
-    }
+        return {};
+    },
+    components: { RouterLink }
 };
 </script>
 
